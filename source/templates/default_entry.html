@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>Downtime Entry</title>
+       <link rel="stylesheet" media="screen" href ="static/bootstrap.min.css">
+       <link rel="stylesheet" href="static/bootstrap-theme.min.css">
+       <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+ 
+    </head>
+    <body>
+ 
+ 
+<div class="container">
+ 
+ 
+  <h2>Downtime Entry Form</h2>
+  <form  action="" method="post" role="form">
+    {{ form.csrf }}
+    <div class="form-group">
+      <input type="text" class="form-control" id="id" name="id" placeholder="-1" style="display:none;" value={{result["id"]}}>
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Operator Name" value={{result["name"]}}>
+      <br>
+      <label for="equip">Equipment:</label>
+      <select type="text" class="form-control" id="equip" name="equip" placeholder="Cause of the downtime" value={{result["equip"]}}>
+	      <option value='Traypacker'>Packer</option>
+	      <option value='Computer'>Computer</option>
+	      <option value='Enrober'>Enrobing Station</option>
+	  </select>
+      <br>
+      <label for="reason1">Reason 1:</label>
+      <select type="text" class="form-control" id="reason1" name="reason1" placeholder="Reason for downtime" value={{result["reason1"]}}>
+	      <option value='Reason1'>Reason1</option>
+	      <option value='Reason2'>Reason2</option>
+	      <option value='Reason3'>Reason3</option>
+	  </select>
+      <br>
+      <label for="reason2">Reason 2:</label>
+      <input type="text" class="form-control" id="reason2" name="reason2" placeholder="Reason detail" value={{result["reason2"]}}>
+      <br>
+      <label for="downtime">Downtime:</label>
+      <input type="text" class="form-control" id="downtime" name="downtime" placeholder="Downtime in minutes" value={{result["downtime"]}}>
+ 
+ 
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+  <br />
+  <p>View past 10 entries: </p><a href="http://w10-devwise-ajk.interstates.com/view"><button class="btn btn-default">View</button></a>
+ 
+  <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+ 
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Success! </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+ 
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+ 
+</div>
+<br>            
+</div>
+</div>
+</body>
+</html>
